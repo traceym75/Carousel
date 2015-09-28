@@ -13,6 +13,8 @@ class SignInViewController: UIViewController {
     var initialY: CGFloat!
     let offset: CGFloat = -70
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     // IMAGES
     @IBOutlet weak var loginTextImageView: UIImageView!
     @IBOutlet weak var loginButtonsImageView: UIImageView!
@@ -23,18 +25,21 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var loginAssetsView: UIView!
     
     
+    @IBAction func onTapGesture(sender: AnyObject) {
+        view.endEditing(true)
+        print("onTap is true, keyboard hsould hide")
+        
+        //  also need to add code here to move the assets back down
+    }
+    
     // FORM FIELDS
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
     @IBOutlet weak var loginButton: UIButton!
 
-    
-    // BACK BUTTON
     @IBAction func onBackButton(sender: AnyObject) {
-        
        dismissViewControllerAnimated(true, completion: nil)
-        print("dismiss view is true")
     }
 
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
@@ -45,8 +50,6 @@ class SignInViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         initialY = loginAssetsView.frame.origin.y
-        
-
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
@@ -70,13 +73,7 @@ class SignInViewController: UIViewController {
             dispatch_get_main_queue(), closure)
     }
     
-    // To dismiss keyboard (NOT WORKING)
-    
-    @IBAction func onTap(sender: AnyObject) {
-        view.endEditing(true)
-        
-        //  also need to add code here to move the assets back down
-    }
+
 
     // SIGN IN BUTTON
     
@@ -193,11 +190,11 @@ class SignInViewController: UIViewController {
         
         // Get the keyboard height and width from the notification
         // Size varies depending on OS, language, orientation
-        var kbSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue().size
-        var durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber
-        var animationDuration = durationValue.doubleValue
-        var curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber
-        var animationCurve = curveValue.integerValue
+        _ = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue().size
+        let durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber
+        let animationDuration = durationValue.doubleValue
+        let curveValue = userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber
+        let animationCurve = curveValue.integerValue
         
         UIView.animateWithDuration(animationDuration, delay: 0.0, options: UIViewAnimationOptions(rawValue: UInt(animationCurve << 16)), animations: {
             

@@ -15,12 +15,15 @@ class WelcomeViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var tourButtonImageView: UIImageView!
     
+    @IBOutlet weak var greenUISwitch: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
         tourButtonImageView.alpha = 0
+        greenUISwitch.hidden = true
         
         scrollView.delegate = self
 
@@ -46,11 +49,10 @@ class WelcomeViewController: UIViewController, UIScrollViewDelegate {
             UIView.animateWithDuration(0.7) {
                 
                 self.tourButtonImageView.alpha = 1
+                self.greenUISwitch.hidden = false
                 
             }
             
-           // bring this back if the animation doesnt work
-            //tourButtonImageView.hidden = false
         }
     
     }
