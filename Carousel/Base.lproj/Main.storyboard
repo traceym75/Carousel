@@ -141,10 +141,17 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="LTh-O9-zzv">
-                                <rect key="frame" x="142" y="185" width="37" height="37"/>
+                                <rect key="frame" x="142" y="220" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Signing in..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3i0-sc-Ake">
+                                <rect key="frame" x="97" y="160" width="126" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -158,6 +165,7 @@
                         <outlet property="loginTextImageView" destination="96L-cx-ehU" id="C2H-VA-SKe"/>
                         <outlet property="passwordField" destination="Q2M-LN-M1e" id="Grt-GE-oRV"/>
                         <outlet property="scrollView" destination="sav-lj-xai" id="dc1-gG-ogM"/>
+                        <outlet property="signingInLabel" destination="3i0-sc-Ake" id="tWM-fI-Cdo"/>
                         <outlet property="smokeScreenImageView" destination="pGM-JB-npd" id="LZO-2O-IHe"/>
                         <segue destination="VnV-2u-ZGl" kind="modal" identifier="loginSegue" modalTransitionStyle="crossDissolve" id="oRg-II-BZp"/>
                     </connections>
@@ -219,9 +227,12 @@
                                     <segue destination="bP3-4X-xfT" kind="modal" modalTransitionStyle="crossDissolve" id="aeR-8p-tdk"/>
                                 </connections>
                             </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="KaA-dx-RBl">
-                                <rect key="frame" x="1210" y="454" width="51" height="31"/>
+                            <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="KaA-dx-RBl">
+                                <rect key="frame" x="1220" y="450" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="greenSwitch:" destination="VnV-2u-ZGl" eventType="valueChanged" id="HXk-yN-tGk"/>
+                                </connections>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -99,7 +99,7 @@ class IntroViewController: UIViewController, UIScrollViewDelegate {
         // This method is called as the user scrolls  PUT THE TILE IMG ANIMATIONS HERE
         
         
-        UIView.animateWithDuration(0.65) {
+        UIView.animateWithDuration(0.5) {
             
             // ONE
             self.tileOneImageView.center = self.tileOneOriginalPosition
@@ -146,7 +146,6 @@ class IntroViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         // This method is called when the scrollview finally stops scrolling.
         
-        
         print("You did end decelerating")
         
     }
@@ -158,14 +157,5 @@ class IntroViewController: UIViewController, UIScrollViewDelegate {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

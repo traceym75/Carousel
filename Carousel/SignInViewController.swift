@@ -15,6 +15,8 @@ class SignInViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var signingInLabel: UILabel!
+    
     // IMAGES
     @IBOutlet weak var loginTextImageView: UIImageView!
     @IBOutlet weak var loginButtonsImageView: UIImageView!
@@ -27,9 +29,8 @@ class SignInViewController: UIViewController {
     
     @IBAction func onTapGesture(sender: AnyObject) {
         view.endEditing(true)
-        print("onTap is true, keyboard hsould hide")
-        
-        //  also need to add code here to move the assets back down
+        print("onTap is true, keyboard should hide")
+
     }
     
     // FORM FIELDS
@@ -55,6 +56,7 @@ class SignInViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
         
         activityIndicatorView.hidden = true
+        signingInLabel.hidden = true
     
     }
 
@@ -111,8 +113,11 @@ class SignInViewController: UIViewController {
             
         }
  
-        if emailField.text == "try" && passwordField.text == "ppp"
-         {
+
+
+        else if emailField.text != "tim@codepath.com"
+        {
+             // add the loading alert here for 2 seconds
             self.activityIndicatorView.hidden = false
             self.smokeScreenImageView.hidden = false
             self.activityIndicatorView.startAnimating()
@@ -120,47 +125,70 @@ class SignInViewController: UIViewController {
             
             // Delay for 2 seconds, then run the code between the braces.
             delay(2) {
- 
+                
+                let alertController = UIAlertController(title: "Sign in Failed", message: "An incorrect email or password was entered", preferredStyle: .Alert)
+                
+                // create an OK action
+                let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                    // handle response here.
+                }
+                // add the OK action to the alert controller
+                alertController.addAction(OKAction)
+                
+                self.presentViewController(alertController, animated: true) {
+                }
+
+                self.activityIndicatorView.stopAnimating()
+                self.smokeScreenImageView.hidden = true
+                }
+            
+            }
+        else if passwordField.text != "password"
+        {
+            
+            // add the loading alert here for 2 seconds
+            self.activityIndicatorView.hidden = false
+            self.smokeScreenImageView.hidden = false
+            self.activityIndicatorView.startAnimating()
+            self.view.endEditing(true)
+            
+            // Delay for 2 seconds, then run the code between the braces.
+            delay(2) {
+                
+                let alertController = UIAlertController(title: "Sign in Failed", message: "An incorrect email or password was entered", preferredStyle: .Alert)
+                
+                // create an OK action
+                let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                    // handle response here.
+                }
+                // add the OK action to the alert controller
+                alertController.addAction(OKAction)
+                
+                self.presentViewController(alertController, animated: true) {
+                }
+        
+                self.activityIndicatorView.stopAnimating()
+                self.smokeScreenImageView.hidden = true
+            }
+        }
+        
+        else if  emailField.text == "tim@codepath.com" && passwordField.text == "password"
+       {
+            self.activityIndicatorView.hidden = false
+            self.signingInLabel.hidden = false
+            self.smokeScreenImageView.hidden = false
+            self.activityIndicatorView.startAnimating()
+            self.view.endEditing(true)
+            
+            // Delay for 2 seconds, then run the code between the braces.
+            self.delay(2) {
+                
                 self.performSegueWithIdentifier("loginSegue", sender: self)
                 print("I will pause for 2 sec")
                 self.activityIndicatorView.stopAnimating()
             }
         }
-
-        else if emailField.text != "try"
-        {
-             // add the loading alert here for 2 seconds
-            
-            let alertController = UIAlertController(title: "Check your email", message: "An incorrect email address was entered", preferredStyle: .Alert)
-            
-            // create an OK action
-            let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
-                // handle response here.
-            }
-            // add the OK action to the alert controller
-            alertController.addAction(OKAction)
-            
-            presentViewController(alertController, animated: true) {
-            }
-        }
-        else if passwordField.text != "ppp"
-        {
-            
-            // add the loading alert here for 2 seconds
-            
-            
-            let alertController = UIAlertController(title: "Check your password", message: "An incorrect password was entered", preferredStyle: .Alert)
-            
-            // create an OK action
-            let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
-                // handle response here.
-            }
-            // add the OK action to the alert controller
-            alertController.addAction(OKAction)
-            
-            presentViewController(alertController, animated: true) {
-            }
-        }
+        
 
     }
     

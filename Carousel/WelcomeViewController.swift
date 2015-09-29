@@ -23,6 +23,7 @@ class WelcomeViewController: UIViewController, UIScrollViewDelegate {
         // Do any additional setup after loading the view.
         
         tourButtonImageView.alpha = 0
+        
         greenUISwitch.hidden = true
         
         scrollView.delegate = self
@@ -40,14 +41,12 @@ class WelcomeViewController: UIViewController, UIScrollViewDelegate {
   
         print(page)
         
-        // COMPILE ERROR for revealing the take tour btn
-    
+        // reveal the take tour btn
         if pageControl.currentPage == 3  {
         print("on page 4!")
             
-            
             UIView.animateWithDuration(0.7) {
-                
+        
                 self.tourButtonImageView.alpha = 1
                 self.greenUISwitch.hidden = false
                 
@@ -61,12 +60,15 @@ class WelcomeViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func greenSwitch(sender: AnyObject) {
+ 
+    }
 
     @IBAction func onTourButton(sender: AnyObject) {
-        print("You clicked Tour Button")
-        
-        
+   
     }
+    
+    
     /*
     // MARK: - Navigation
 
